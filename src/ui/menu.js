@@ -196,6 +196,7 @@ class MultilingualMenu extends BaseElement {
         super._addSlot("icon", "currentItem", "multiItems");
         this.currentItem = null;
         this.menuItems = null;
+        this.hide();
     }
     static tagName() {
         return "multi-menu";
@@ -244,7 +245,7 @@ class MultilingualMenu extends BaseElement {
         if (this.querySelector("i[slot='icon']") === null) {
             let iconElement = document.createElement("i");
             iconElement.setAttribute("slot", "icon");
-            iconElement.setClass("icon-earth");
+            iconElement.setClass("icon-account");
             this.appendChild(iconElement);
         }
         if (this.menuItems === null) {

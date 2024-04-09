@@ -5,7 +5,7 @@
     src: url('../fonts/iconfont.woff2?t=1651372046520') format('woff2'),
     url('../fonts/iconfont.woff?t=1651372046520') format('woff'),
     url('../fonts/iconfont.ttf?t=1651372046520') format('truetype');
-    font-display: fallback;
+    font-display: block;
 }
 * {
     font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Georgia, Helvetica, sans-serif !important;
@@ -1448,6 +1448,9 @@ message-list > list-data > div[slot="dataInfo"] > #content > list-record > div[s
     margin: 0 1rem 0 0;
     border-radius: 0.75rem;
     background-color: rgb(var(--disabled-bg-color));
+}
+message-list > list-data > div.text-list > #content > list-record > resource-details {
+    display: none;
 }
 message-list > list-data > div.view-list > #content > list-record > div[slot="operators"] > record-operator {
     padding-right: 0.5rem;

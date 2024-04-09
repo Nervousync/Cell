@@ -366,7 +366,7 @@ class BaseButton extends AbstractInput {
     }
     renderElement(data) {
         if (data.hasOwnProperty("value")) {
-            this.textContent = data.value;
+            this.value = data.value;
         }
         if (data.hasOwnProperty("className")) {
             this.dataset.className = data.className;

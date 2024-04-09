@@ -18,6 +18,7 @@
 import {BaseElement} from "./element.js";
 import {ResetButton, SubmitButton} from "./input.js";
 import {PropertyDetails} from "./details.js";
+
 /**
  * Form item element
  *
@@ -39,9 +40,11 @@ class FormItem extends BaseElement {
         this.inputElement = null;
         this.referenceElement = null;
     }
+
     static tagName() {
         return "form-item";
     }
+
     renderElement(data) {
         if (data.hasOwnProperty("tag")) {
             let tagName = data.tag;
@@ -64,10 +67,12 @@ class FormItem extends BaseElement {
             this._render();
         }
     }
+
     connectedCallback() {
         super._addSlot("element");
         this._render();
     }
+
     matchElement(elementName = "") {
         if (elementName == null || elementName.length === 0 || this.inputElement === null) {
             return false;
@@ -75,11 +80,13 @@ class FormItem extends BaseElement {
         return this.inputElement.hasAttribute("name")
             && this.inputElement.getAttribute("name").toLowerCase() === elementName.toLowerCase();
     }
+
     updateValue(value = "") {
         if (value != null && value.length > 0 && this.inputElement !== null) {
             this.inputElement.setAttribute("value", value);
         }
     }
+
     _render() {
         if (this.dataset.tagName !== undefined
             && this.dataset.itemData !== undefined && this.dataset.itemData.isJSON()) {
@@ -110,6 +117,7 @@ class FormItem extends BaseElement {
         }
     }
 }
+
 /**
  * Form info element
  *
@@ -141,9 +149,11 @@ class FormInfo extends BaseElement {
         this.submitButton = null;
         this.resetButton = null;
     }
+
     static tagName() {
         return "form-info";
     }
+
     updateValue(elementName = "", elementValue = "") {
         if (elementName != null && elementName.length > 0
             && elementValue != null && elementValue.length > 0
@@ -156,6 +166,7 @@ class FormInfo extends BaseElement {
                 });
         }
     }
+
     renderElement(data) {
         if (data.hasOwnProperty("action")) {
             Object.keys(data).forEach(key => {
@@ -172,6 +183,9 @@ class FormInfo extends BaseElement {
                     case "items":
                         this.dataset.items = JSON.stringify(data[key]);
                         break;
+                    case "buttons":
+                        this.dataset.buttons = JSON.stringify(data[key]);
+                        break;
                     default:
                         this.setAttribute(key, data[key]);
                         break;
@@ -180,6 +194,7 @@ class FormInfo extends BaseElement {
             this._render();
         }
     }
+
     connectedCallback() {
         this._appendProgress();
         let formButtons = this.querySelector("div[slot='formButtons']");
@@ -198,6 +213,7 @@ class FormInfo extends BaseElement {
         }
         this._render();
     }
+
     _render() {
         if (this.dataset.items !== undefined && this.dataset.items.isJSON()) {
             if (this.formElement === null) {
@@ -213,11 +229,7 @@ class FormInfo extends BaseElement {
             this.dataset.items.parseJSON()
                 .filter(itemInfo => itemInfo.hasOwnProperty("tag"))
                 .forEach(itemInfo => {
-                    if (itemInfo.tag.toLowerCase() === "submit-button") {
-                        this.submitButton.data = JSON.stringify(itemInfo.data);
-                    } else if (itemInfo.tag.toLowerCase() === "reset-button") {
-                        this.resetButton.data = JSON.stringify(itemInfo.data);
-                    } else if (itemInfo.tag.toLowerCase() === "property-details") {
+                    if (itemInfo.tag.toLowerCase() === "property-details") {
                         let propertyDetails = new PropertyDetails();
                         this.formElement.appendChild(propertyDetails);
                         propertyDetails.data = JSON.stringify(itemInfo.data);
@@ -233,6 +245,21 @@ class FormInfo extends BaseElement {
                         formItem.data = JSON.stringify(itemInfo);
                     }
                 });
+            if (this.dataset.buttons !== undefined && this.dataset.buttons.isJSON()) {
+                let buttonsData = this.dataset.buttons.parseJSON();
+                if (buttonsData.hasOwnProperty("submit")) {
+                    this.submitButton.data = JSON.stringify(buttonsData.submit);
+                    this.submitButton.show();
+                } else {
+                    this.submitButton.hide();
+                }
+                if (buttonsData.hasOwnProperty("reset")) {
+                    this.resetButton.data = JSON.stringify(buttonsData.reset);
+                    this.resetButton.show();
+                } else {
+                    this.resetButton.hide();
+                }
+            }
             this.attrNames().forEach(attributeName => {
                 if (!attributeName.startsWith("data-") && attributeName.toLowerCase() !== "slot") {
                     this.formElement.setAttribute(attributeName, this.getAttribute(attributeName));
@@ -240,13 +267,16 @@ class FormInfo extends BaseElement {
             });
         }
     }
+
     submit() {
         Cell.submitForm(this.formElement);
     }
+
     reset() {
         if (this.formElement != null) {
             this.formElement.reset();
         }
     }
 }
+
 export {FormInfo, FormItem};

@@ -147,28 +147,28 @@ const RegexLibrary = {
     CHN_Social_Credit: /^([1-9]|A|N|Y)[\dA-Z]{17}$/g
 };
 const DarkMode = {
-    Light:  0,
-    Dark:   1,
-    Sun:    2,
+    Light: 0,
+    Dark: 1,
+    Sun: 2,
     System: 3
 }
 Object.freeze(DarkMode);
 const DebugMode = {
-    DEBUG:  0,
-    INFO:   1,
-    WARN:   2,
-    ERROR:  3
+    DEBUG: 0,
+    INFO: 1,
+    WARN: 2,
+    ERROR: 3
 }
 Object.freeze(DebugMode);
 const SlideType = {
-    ScrollLeft:     0,
-    ScrollTop:      1,
-    ScrollRight:    2,
-    ScrollBottom:   3,
-    ZoomIn:         4,
-    ZoomOut:        5,
-    OpacityIn:      6,
-    OpacityOut:     7
+    ScrollLeft: 0,
+    ScrollTop: 1,
+    ScrollRight: 2,
+    ScrollBottom: 3,
+    ZoomIn: 4,
+    ZoomOut: 5,
+    OpacityIn: 6,
+    OpacityOut: 7
 }
 Object.freeze(SlideType);
 const Config = {
@@ -224,6 +224,7 @@ const Config = {
     elements: []
 };
 Object.seal(Config);
+
 function $() {
     if (arguments.length <= 0) {
         return [];
@@ -245,6 +246,7 @@ function $() {
         }
     }
 }
+
 export {Comment, RegexLibrary, Config, DarkMode, DebugMode, SlideType, $};
 Object.assign(Element.prototype, {
     getClass() {
@@ -721,24 +723,24 @@ Object.assign(String.prototype, {
     encodeByRegExp() {
         let _result = "";
         if (this.length > 0) {
-            _result = this.replace(/&/g, "&amp;");
-            _result = _result.replace(/</g, "&lt;");
-            _result = _result.replace(/>/g, "&gt;");
-            _result = _result.replace(/ /g, "&nbsp;");
-            _result = _result.replace(/'/g, "&#39;");
-            _result = _result.replace(/"/g, "&quot;");
+            _result = this.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/ /g, "&nbsp;")
+                .replace(/'/g, "&#39;")
+                .replace(/"/g, "&quot;");
         }
         return _result;
     },
     decodeByRegExp() {
         let _result = "";
         if (this.length > 0) {
-            _result = this.replace(/&amp;/g, "&");
-            _result = _result.replace(/&lt;/g, "<");
-            _result = _result.replace(/&gt;/g, ">");
-            _result = _result.replace(/&nbsp;/g, " ");
-            _result = _result.replace(/&#39;/g, "\'");
-            _result = _result.replace(/&quot;/g, "\"");
+            _result = this.replace(/&quot;/g, "\"")
+                .replace(/&#39;/g, "\'")
+                .replace(/&nbsp;/g, " ")
+                .replace(/&lt;/g, "<")
+                .replace(/&gt;/g, ">")
+                .replace(/&amp;/g, "&");
         }
         return _result;
     },
@@ -776,7 +778,7 @@ Object.assign(String.prototype, {
     getBytes() {
         let encode = encodeURIComponent(this);
         let _dataBytes = [];
-        for (let _i = 0; _i < encode.length ; _i++) {
+        for (let _i = 0; _i < encode.length; _i++) {
             let ch = encode.charAt(_i);
             if (ch === '%') {
                 _dataBytes.push(parseInt(encode.charAt(_i + 1) + encode.charAt(_i + 2), 16));

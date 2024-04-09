@@ -15,7 +15,6 @@ const multiMenuData = `{
         }
     ]
 }`;
-
 const categoryList = `{
     "title": "Category Name",
     "items": [
@@ -51,7 +50,6 @@ const categoryList = `{
         }
     ]
 }`;
-
 const indexTopMenuData = `{
     "data" : [
         {
@@ -106,16 +104,13 @@ const indexTopMenuData = `{
         }
     ]
 }`;
-
 const progressBarDataNumber = `{
     "percent" : "27"
 }`;
-
 const progressBarDataDetails = `{
     "processed" : "4466304",
     "total" : "13032864"
 }`;
-
 const socialData = `{
     "textContent": "Follow Us",
     "items": [
@@ -713,7 +708,6 @@ const listData = `{
         ]
     }
 }`;
-
 const bannerData = `{
     "title": "Banner Title",
     "resource": {
@@ -721,7 +715,6 @@ const bannerData = `{
         "resourcePath": "./images/slides/1.jpg"
     }
 }`;
-
 const slideData = `{
     "transitionTime": 1000,
     "openWindow" : false,
@@ -732,7 +725,7 @@ const slideData = `{
             "href" : "#",
             "resource" : {
                 "mimeType" : "image/jpg",
-                "resourcePath" : "./images/slides/5.jpg",
+                "resourcePath" : "./images/slides/1.jpg",
                 "title" : "Title 1"
             }
         },
@@ -770,7 +763,6 @@ const slideData = `{
         }
     ]
 }`;
-
 const formData = `{
     "method": "post",
     "action": "/#",
@@ -1063,7 +1055,6 @@ const formData = `{
         }
     ]
 }`;
-
 const detailsData = `{
     "messageTitle": "Message Title Message Title Message Title Message Title",
     "properties": [
@@ -1133,7 +1124,6 @@ const detailsData = `{
       ]
     }
 }`;
-
 const addressData = `{
     "title" : "Address Title",
     "content" : "Room 909, Building A, Broadtec International Plaza, Chaoyang District, Beijing, China",
@@ -1143,7 +1133,6 @@ const addressData = `{
         "longitude" : "116.4790988860714"
     }
 }`;
-
 const widgetData = `{
     "linkAddress": "#widgetButton",
     "resource" : {
@@ -1151,7 +1140,6 @@ const widgetData = `{
         "resourcePath": "images/1.jpg"
     }
 }`;
-
 const corporateData = `{
     "contentInfo": "Corporate details article Corporate details article Corporate details article Corporate details article Corporate details article Corporate details article Corporate details article Corporate details article ",
     "resourceList": [
@@ -1210,7 +1198,6 @@ const corporateData = `{
         }
     ]
 }`;
-
 export {
     multiMenuData, categoryList, indexTopMenuData, progressBarDataNumber, progressBarDataDetails, bannerData,
     formData, listData, slideData, socialData, detailsData, addressData, widgetData, corporateData
